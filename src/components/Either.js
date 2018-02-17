@@ -15,6 +15,9 @@ export const Left = x => ({
   inpect: () => `Left(${x})`
 })
 
+export const fromNullable = obj =>
+      obj != null ? Right(obj) : Left(obj)
+
 const Either = ({ when, left, right }) => when ? right : left
 
 const {
