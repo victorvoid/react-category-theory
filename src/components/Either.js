@@ -1,7 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Either = props => props.when ? props.right : props.left;
+export const Right = x => ({
+  map: f => Right(f(x)),
+  chain: f => f(x),
+  fold: (f, g) => g,
+  inpect: () => `Right(${x})`
+})
+
+export const Left = x => ({
+  map: f => Left(x),
+  chain: f => Left(x),
+  fold: (f, g) => f,
+  inpect: () => `Left(${x})`
+})
+
+const Either = ({ when, left, right }) => when ? right : left
 
 const {
   element, bool
